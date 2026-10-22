@@ -11,6 +11,13 @@ export const registerUser = async (req, res) => {
       });
     }
 
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "Invalid email format"
+      });
+    }
+
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
