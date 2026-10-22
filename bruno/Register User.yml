@@ -1,0 +1,29 @@
+info:
+  name: Register User
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{SERVER_URL}}/api/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "DEFG",
+        "email": "abcd@a",
+        "password": "abcd"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: SERVER_URL
+      value: http://127.0.0.1:5000
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
