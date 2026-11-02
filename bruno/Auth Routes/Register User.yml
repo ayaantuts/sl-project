@@ -1,7 +1,7 @@
 info:
   name: Register User
   type: http
-  seq: 2
+  seq: 3
 
 http:
   method: POST
@@ -10,16 +10,11 @@ http:
     type: json
     data: |-
       {
-        "name": "DEFG",
-        "email": "abcd@a",
-        "password": "abcd"
+        "name": "User 1",
+        "email": "user@waitless.com",
+        "password": "pass123"
       }
   auth: inherit
-
-runtime:
-  variables:
-    - name: SERVER_URL
-      value: http://127.0.0.1:5000
 
 settings:
   encodeUrl: true

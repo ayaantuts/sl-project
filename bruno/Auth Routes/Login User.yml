@@ -1,0 +1,23 @@
+info:
+  name: Login User
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{SERVER_URL}}/api/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "user@waitless.com",
+        "password": "pass123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

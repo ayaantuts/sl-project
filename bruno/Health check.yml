@@ -8,11 +8,6 @@ http:
   url: "{{SERVER_URL}}"
   auth: inherit
 
-runtime:
-  variables:
-    - name: SERVER_URL
-      value: http://127.0.0.1:5000
-
 settings:
   encodeUrl: true
   timeout: 0

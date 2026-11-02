@@ -14,6 +14,21 @@ config:
         username: ""
         password: ""
       bypassProxy: ""
+
+request:
+  auth:
+    type: bearer
+    token: "{{token}}"
+  variables:
+    - name: token
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZThjY2JlMjg4YTU2ZWRiMTE4MmE2MiIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc5MzY0MjA2NiwiZXhwIjoxNzk2MjM0MDY2fQ.ZoqaVuxeBqXPpNOj8Un3A3S79J-zkImWrNqL72R3AXc
+    - name: SERVER_URL
+      value: http://127.0.0.1:5000
+  scripts:
+    - type: after-response
+      code: |-
+        var jsonData = res.body?.data;
+        if (jsonData?.token) bru.setCollectionVar("token", jsonData.token);
 bundled: false
 extensions:
   bruno:
