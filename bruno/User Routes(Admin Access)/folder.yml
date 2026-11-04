@@ -1,0 +1,10 @@
+info:
+  name: User Routes(Admin Access)
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+  variables:
+    - name: USER_URL
+      value: "{{SERVER_URL}}/api/user"

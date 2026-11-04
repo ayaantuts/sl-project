@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{SERVER_URL}}/api/auth/register"
+  url: "{{AUTH_URL}}/register"
   body:
     type: json
     data: |-
