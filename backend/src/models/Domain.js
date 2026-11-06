@@ -7,7 +7,8 @@ const domainSchema = new Schema({
     allowGroupBooking: { type: Boolean, default: true },
     noShowTimeoutMins: { type: Number, default: 5 },
     maxGroupSize: { type: Number, default: 5 }
-  }
+  },
+  moderatorRef: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true });
 
 export default model('Domain', domainSchema);
