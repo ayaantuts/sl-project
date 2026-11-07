@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import domainRoutes from "./routes/domainRoutes.js";
 
 dotenv.config();
 
@@ -13,11 +14,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "Waitless API is running" });
+  res.status(200).json({ success: true, data: { message: "Waitless API is running" } });
 });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/domain", domainRoutes);
 
 const PORT = process.env.PORT || 5000;
 
