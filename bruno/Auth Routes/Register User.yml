@@ -1,0 +1,25 @@
+info:
+  name: Register User
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{AUTH_URL}}/register"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Moderator 1",
+        "email": "mod1@waitless.com",
+        "password": "pass123",
+        "role": "Moderator"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

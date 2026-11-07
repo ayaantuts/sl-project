@@ -1,0 +1,23 @@
+info:
+  name: Login as Admin
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{AUTH_URL}}/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "admin@waitless.com",
+        "password": "adminadmin"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

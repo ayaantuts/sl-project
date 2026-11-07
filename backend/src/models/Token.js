@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import { Schema, model } from "mongoose";
 
-const workflowStepSchema = new mongoose.Schema({
-  serviceId: { type: mongoose.Schema.Types.ObjectId, ref: 'Service' },
+const workflowStepSchema = new Schema({
+  serviceId: { type: Schema.Types.ObjectId, ref: 'Service' },
   counterId: { type: String },
   status: { type: String },
   startedAt: { type: Date },
@@ -9,12 +9,12 @@ const workflowStepSchema = new mongoose.Schema({
   notes: { type: String }
 });
 
-const tokenSchema = new mongoose.Schema({
-  domainId: { type: mongoose.Schema.Types.ObjectId, ref: 'Domain', required: true },
-  currentServiceId: { type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true },
+const tokenSchema = new Schema({
+  domainId: { type: Schema.Types.ObjectId, ref: 'Domain', required: true },
+  currentServiceId: { type: Schema.Types.ObjectId, ref: 'Service', required: true },
 
   ticketNumber: { type: String, required: true },
-  userRef: { type: String, required: true },
+  userRef: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   groupSize: { type: Number, default: 1 },
 
   status: { 
@@ -36,4 +36,4 @@ const tokenSchema = new mongoose.Schema({
   serviceStartedAt: Date
 }, { timestamps: true });
 
-module.exports = mongoose.model('Token', tokenSchema);
+export default model('Token', tokenSchema);

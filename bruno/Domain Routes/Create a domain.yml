@@ -1,25 +1,20 @@
 info:
-  name: Register User
+  name: Create a domain
   type: http
   seq: 2
 
 http:
   method: POST
-  url: "{{SERVER_URL}}/api/auth/register"
+  url: "{{DOMAIN_URL}}"
   body:
     type: json
     data: |-
       {
-        "name": "DEFG",
-        "email": "abcd@a",
-        "password": "abcd"
+        "name": "Healthcare",
+        "type": "Medical",
+        "moderatorRef": "6aef1b83588cbf1074a2a924"
       }
   auth: inherit
-
-runtime:
-  variables:
-    - name: SERVER_URL
-      value: http://127.0.0.1:5000
 
 settings:
   encodeUrl: true

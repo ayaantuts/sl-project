@@ -1,0 +1,10 @@
+info:
+  name: Auth Routes
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit
+  variables:
+    - name: AUTH_URL
+      value: "{{SERVER_URL}}/api/auth"
