@@ -1,0 +1,10 @@
+info:
+  name: Domain Routes
+  type: folder
+  seq: 6
+
+request:
+  auth: inherit
+  variables:
+    - name: DOMAIN_URL
+      value: "{{SERVER_URL}}/api/domain"

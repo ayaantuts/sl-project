@@ -1,0 +1,24 @@
+info:
+  name: Create a domain
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{DOMAIN_URL}}"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Healthcare",
+        "type": "Medical",
+        "moderatorRef": "6aef1b83588cbf1074a2a924"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
