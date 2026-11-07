@@ -1,11 +1,11 @@
 info:
   name: Delete User
   type: http
-  seq: 6
+  seq: 2
 
 http:
   method: DELETE
-  url: "{{USER_URL}}/6aeb30d583a2eda56cbc48f7"
+  url: "{{USER_URL}}/6aef1b55588cbf1074a2a923"
   auth: inherit
 
 settings:

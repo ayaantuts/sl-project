@@ -1,17 +1,17 @@
 info:
-  name: Login as admin
+  name: Login as User
   type: http
-  seq: 3
+  seq: 2
 
 http:
   method: POST
-  url: "{{SERVER_URL}}/api/auth/login"
+  url: "{{AUTH_URL}}/login"
   body:
     type: json
     data: |-
       {
-        "email": "admin@waitless.com",
-        "password": "adminadmin"
+        "email": "user@waitless.com",
+        "password": "pass123"
       }
   auth: inherit
 

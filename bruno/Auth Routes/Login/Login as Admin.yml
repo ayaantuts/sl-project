@@ -1,7 +1,7 @@
 info:
-  name: Login User
+  name: Login as Admin
   type: http
-  seq: 2
+  seq: 3
 
 http:
   method: POST
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "email": "user@waitless.com",
-        "password": "pass123"
+        "email": "admin@waitless.com",
+        "password": "adminadmin"
       }
   auth: inherit
 
