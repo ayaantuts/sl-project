@@ -23,7 +23,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   };
   const token = user.getSignedJwtToken();
 
-  return res.json(new ApiResponse(200, { user: userData, token }, "User logged in successfully"));
+  return new ApiResponse(200, { user: userData, token }, "User logged in successfully");
 });
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -44,7 +44,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "Email is already registered");
   }
 
-  const user = await User.create({
+  await User.create({
     name,
     email,
     password,
@@ -52,9 +52,9 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   const matchedUser = await User.findOne({ email });
-  matchedUser.token = user.getSignedJwtToken();
+  const token = await matchedUser.getSignedJwtToken();
 
-  return res.json(new ApiResponse(201, { user: matchedUser }, "User registered successfully"));
+  return new ApiResponse(201, { user: matchedUser, token }, "User registered successfully");
 });
 
 export const getMe = asyncHandler(async (req, res) => {
@@ -64,5 +64,5 @@ export const getMe = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
-  return res.json(new ApiResponse(200, { user }, "User retrieved successfully"));
+  return new ApiResponse(200, { user }, "User retrieved successfully");
 });
