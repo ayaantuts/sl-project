@@ -21,9 +21,9 @@ export const loginUser = asyncHandler(async (req, res) => {
     name: user.name,
     email: user.email,
   };
-  const token = user.getSignedJwtToken();
+  const jwtToken = user.getSignedJwtToken();
 
-  return new ApiResponse(200, { user: userData, token }, "User logged in successfully");
+  return new ApiResponse(200, { user: userData, jwtToken }, "User logged in successfully");
 });
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -52,9 +52,9 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   const matchedUser = await User.findOne({ email });
-  const token = await matchedUser.getSignedJwtToken();
+  const jwtToken = await matchedUser.getSignedJwtToken();
 
-  return new ApiResponse(201, { user: matchedUser, token }, "User registered successfully");
+  return new ApiResponse(201, { user: matchedUser, jwtToken }, "User registered successfully");
 });
 
 export const getMe = asyncHandler(async (req, res) => {
