@@ -1,0 +1,22 @@
+info:
+  name: Update token status
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{TOKEN_URL}}/6af60021a1d46262a04e4b15"
+  body:
+    type: json
+    data: |-
+      {
+        "status": "IN_SERVICE"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

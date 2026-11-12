@@ -1,0 +1,10 @@
+info:
+  name: Services Routes
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+  variables:
+    - name: SERVICE_URL
+      value: "{{SERVER_URL}}/api/service"

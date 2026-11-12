@@ -1,0 +1,10 @@
+info:
+  name: Token Routes
+  type: folder
+  seq: 5
+
+request:
+  auth: inherit
+  variables:
+    - name: TOKEN_URL
+      value: "{{SERVER_URL}}/api/token"
