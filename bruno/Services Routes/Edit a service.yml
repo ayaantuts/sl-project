@@ -1,0 +1,24 @@
+info:
+  name: Edit a service
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{SERVICE_URL}}/6af5ffd6a1d46262a04e4b14"
+  body:
+    type: json
+    data: |-
+      {
+        "domainId": "6aef1dd33add3b63f3df0386",
+        "name": "CHK-001",
+        "prefix": "CHK"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

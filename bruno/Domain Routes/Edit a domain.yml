@@ -1,0 +1,24 @@
+info:
+  name: Edit a domain
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{DOMAIN_URL}}/6aef1dd33add3b63f3df0386"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Healthcare",
+        "type": "Medical",
+        "moderatorRef": "6aef1b83588cbf1074a2a924"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

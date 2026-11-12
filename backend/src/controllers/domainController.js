@@ -9,12 +9,12 @@ export const getDomains = asyncHandler(async (req, res) => {
 		filter.moderatorRef = req.user._id;
 	}
 	const domains = await Domain.find(filter);
-	return res.json(new ApiResponse(200, { domains }, "Domains retrieved successfully"));
+	return new ApiResponse(200, { domains }, "Domains retrieved successfully");
 });
 
 export const createDomain = asyncHandler(async (req, res) => {
 	const domain = await Domain.create(req.body);
-	return res.json(new ApiResponse(201, { domain }, "Domain created successfully"));
+	return new ApiResponse(201, { domain }, "Domain created successfully");
 });
 
 export const updateDomain = asyncHandler(async (req, res) => {
@@ -22,7 +22,7 @@ export const updateDomain = asyncHandler(async (req, res) => {
 	if (!domain) {
 		throw new ApiError(404, "Domain not found");
 	}
-	return res.json(new ApiResponse(200, { domain }, "Domain updated successfully"));
+	return new ApiResponse(200, { domain }, "Domain updated successfully");
 });
 
 export const deleteDomain = asyncHandler(async (req, res) => {
@@ -30,5 +30,5 @@ export const deleteDomain = asyncHandler(async (req, res) => {
 	if (!domain) {
 		throw new ApiError(404, "Domain not found");
 	}
-	return res.json(new ApiResponse(204, {}, "Domain deleted successfully"));
+	return new ApiResponse(204, {}, "Domain deleted successfully");
 });
