@@ -40,6 +40,9 @@ export const updateStatus = asyncHandler(async (req, res) => {
 
 export const updateToken = asyncHandler(async (req, res) => {
 	req.body.userRef = req.user._id;
+	delete req.body.domainId;
+	delete req.body.userRef;
+	delete req.body.status;
 	const token = await Token.findByIdAndUpdate(req.params.id, req.body, { new: true });
 	if (!token) {
 		throw new ApiError(404, "Token not found");
