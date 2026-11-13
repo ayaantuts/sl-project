@@ -57,6 +57,10 @@ export const registerUser = asyncHandler(async (req, res) => {
   return new ApiResponse(201, { user: matchedUser, jwtToken }, "User registered successfully");
 });
 
+export const logoutUser = asyncHandler(async (req, res) => {
+  return new ApiResponse(200, {}, "User logged out successfully");
+});
+
 export const getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   
