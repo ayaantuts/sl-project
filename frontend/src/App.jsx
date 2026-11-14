@@ -1,28 +1,21 @@
-import React from 'react';
-import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
-import Navbar from './components/Navbar';
-import TokenDashboard from './components/TokenDashboard';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { LoadingState } from './components/common/States';
 
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: { main: '#1976d2' },
-    secondary: { main: '#9c27b0' },
-    background: { default: '#f8fafc' }
-  },
-  typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif'
-  }
-});
+const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box minHeight="100vh" bgcolor="background.default">
-        <Navbar />
-        <TokenDashboard />
-      </Box>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Suspense fallback={<LoadingState />}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 }
