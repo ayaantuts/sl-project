@@ -2,19 +2,23 @@ import { Schema, model } from "mongoose";
 
 const workflowStepSchema = new Schema({
   serviceId: { type: Schema.Types.ObjectId, ref: 'Service' },
-  counterId: { type: String },
-  status: { type: String },
-  startedAt: { type: Date },
-  completedAt: { type: Date, default: Date.now },
-  notes: { type: String }
+  counterId: { type: String, default: null },
+  status: {
+    type: String,
+    enum: ["WAITING", "CALLED", "IN_PROGRESS", "COMPLETED", "TRANSFERRED", "MISSED", "CANCELLED"],
+    default: "WAITING",
+  },
+  startedAt: { type: Date, default: null },
+  completedAt: { type: Date, default: null },
+  notes: { type: String, default: "" }
 });
 
 const tokenSchema = new Schema({
   domainId: { type: Schema.Types.ObjectId, ref: 'Domain', required: true },
   currentServiceId: { type: Schema.Types.ObjectId, ref: 'Service', required: true },
 
-  ticketNumber: { type: String, required: true },
-  userRef: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  ticketNumber: { type: String, required: true, index: true },
+  userRef: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
   groupSize: { type: Number, default: 1 },
 
   status: { 
@@ -32,8 +36,15 @@ const tokenSchema = new Schema({
   },
 
   workflowHistory: [workflowStepSchema],
-  
-  serviceStartedAt: Date
+  serviceStartedAt: Date,
+
+  queuedAt: { type: Date, default: Date.now },
+  checkedInAt: { type: Date, default: null },
+  rejoinCount: { type: Number, default: 0 },
+  dependentId: { type: Schema.Types.ObjectId, ref: "Dependent", default: null },
+  holderName: { type: String, trim: true },
 }, { timestamps: true });
+
+tokenSchema.index({ domainId: 1, currentServiceId: 1, status: 1 });
 
 export default model('Token', tokenSchema);
