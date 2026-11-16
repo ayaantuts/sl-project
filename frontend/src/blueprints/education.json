@@ -1,0 +1,15 @@
+{
+  "key": "education",
+  "label": "Higher Education",
+  "description": "Student registration, fee submission and transcript issuance.",
+  "domain": {
+    "type": "Education",
+    "settings": { "allowGroupBooking": true, "noShowTimeoutMins": 5, "maxGroupSize": 4 }
+  },
+  "services": [
+    { "name": "Admission Registration", "prefix": "ADM", "avgHandleTimeMins": 6 },
+    { "name": "Fee Submission", "prefix": "EFS", "avgHandleTimeMins": 4 },
+    { "name": "Transcript Issuance", "prefix": "TRN", "avgHandleTimeMins": 5 }
+  ],
+  "workflow": ["ADM", "EFS", "TRN"]
+}
