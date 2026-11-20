@@ -2,10 +2,11 @@ import { Schema, model } from "mongoose";
 
 const workflowStepSchema = new Schema({
   serviceId: { type: Schema.Types.ObjectId, ref: 'Service' },
-  counterId: { type: String, default: null },
+  serviceName: { type: String, default: "Unknown" },
+  counterId: { type: String, default: "Counter 1" },
   status: {
     type: String,
-    enum: ["WAITING", "CALLED", "IN_PROGRESS", "COMPLETED", "TRANSFERRED", "MISSED", "CANCELLED"],
+    enum: ["WAITING", "IN_SERVICE", "COMPLETED", "TRANSFERRED", "MISSED", "CANCELLED", "PENDING", "CALLED"],
     default: "WAITING",
   },
   startedAt: { type: Date, default: null },
@@ -23,7 +24,7 @@ const tokenSchema = new Schema({
 
   status: { 
     type: String, 
-    enum: ['WAITING', 'IN_SERVICE', 'COMPLETED', 'TRANSFERRED', 'MISSED', 'CANCELLED'],
+    enum: ["WAITING", "IN_SERVICE", "COMPLETED", "TRANSFERRED", "MISSED", "CANCELLED", "PENDING"],
     default: 'WAITING'
   },
 
