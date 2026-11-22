@@ -1,0 +1,16 @@
+{
+  "key": "healthcare",
+  "label": "Healthcare (Hospital / OPD)",
+  "description": "Registration, triage, doctor consultation and pharmacy, with emergency overrides and priority for senior citizens.",
+  "domain": {
+    "type": "Healthcare",
+    "settings": { "allowGroupBooking": true, "noShowTimeoutMins": 5, "maxGroupSize": 3 }
+  },
+  "services": [
+    { "name": "OPD Registration", "prefix": "REG", "avgHandleTimeMins": 3 },
+    { "name": "Triage Desk", "prefix": "TRI", "avgHandleTimeMins": 5 },
+    { "name": "Doctor Consultation", "prefix": "CON", "avgHandleTimeMins": 10 },
+    { "name": "Pharmacy", "prefix": "PHA", "avgHandleTimeMins": 4 }
+  ],
+  "workflow": ["REG", "TRI", "CON", "PHA"]
+}

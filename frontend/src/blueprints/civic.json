@@ -1,0 +1,15 @@
+{
+  "key": "civic",
+  "label": "Civic & Public Infrastructure (RTO / Municipal)",
+  "description": "Multi-step document verification, fee collection and licence issuance.",
+  "domain": {
+    "type": "Civic",
+    "settings": { "allowGroupBooking": false, "noShowTimeoutMins": 4, "maxGroupSize": 1 }
+  },
+  "services": [
+    { "name": "Document Verification", "prefix": "DOC", "avgHandleTimeMins": 8 },
+    { "name": "Fee Payment", "prefix": "FEE", "avgHandleTimeMins": 4 },
+    { "name": "Licence Issuance", "prefix": "LIC", "avgHandleTimeMins": 6 }
+  ],
+  "workflow": ["DOC", "FEE", "LIC"]
+}

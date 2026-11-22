@@ -1,0 +1,15 @@
+{
+  "key": "banking",
+  "label": "Banking & Finance",
+  "description": "Account services, cash counters and loan desks with high-value priority tiers and desk transfers.",
+  "domain": {
+    "type": "Banking",
+    "settings": { "allowGroupBooking": true, "noShowTimeoutMins": 3, "maxGroupSize": 2 }
+  },
+  "services": [
+    { "name": "Account Services", "prefix": "ACC", "avgHandleTimeMins": 8 },
+    { "name": "Cash & Deposits", "prefix": "CSH", "avgHandleTimeMins": 4 },
+    { "name": "Loans Desk", "prefix": "LON", "avgHandleTimeMins": 15 }
+  ],
+  "workflow": ["ACC", "CSH"]
+}
