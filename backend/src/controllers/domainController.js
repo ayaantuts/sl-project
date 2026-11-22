@@ -1,4 +1,6 @@
 import Domain from "../models/Domain.js";
+import Service from "../models/Service.js";
+import Token from "../models/Token.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import asyncHandler from "../utils/AsyncHandler.js";
@@ -18,7 +20,7 @@ export const createDomain = asyncHandler(async (req, res) => {
 });
 
 export const updateDomain = asyncHandler(async (req, res) => {
-	const domain = await Domain.findByIdAndUpdate(req.params.id, req.body, { new: true });
+	const domain = await Domain.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
 	if (!domain) {
 		throw new ApiError(404, "Domain not found");
 	}
@@ -30,5 +32,9 @@ export const deleteDomain = asyncHandler(async (req, res) => {
 	if (!domain) {
 		throw new ApiError(404, "Domain not found");
 	}
+	Promise.all([
+		Service.deleteMany({ domainRef: domain._id }),
+		Token.deleteMany({ domainRef: domain._id }),
+	]);
 	return new ApiResponse(204, {}, "Domain deleted successfully");
 });
