@@ -141,7 +141,6 @@ export const createToken = asyncHandler(async (req, res) => {
     groupSize: parsedGroupSize,
     status: "WAITING",
     priorityTier: resolvedTier,
-    priorityScore: computePriorityScore({ priorityTier: resolvedTier, queuedAt: now }, now),
     scheduledSlot: isScheduled ? scheduledSlot : undefined,
     queuedAt: now,
     dependentId: dependentId || null,
@@ -154,6 +153,9 @@ export const createToken = asyncHandler(async (req, res) => {
         completedAt: null,
       }],
   });
+
+  created.priorityScore = computePriorityScore(created, now);
+  await created.save();
 
   service.waitingCount = await Token.countDocuments({ currentServiceId, status: "WAITING" });
   await service.save();
