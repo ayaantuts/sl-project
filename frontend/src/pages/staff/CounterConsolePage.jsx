@@ -444,7 +444,7 @@ export default function CounterConsolePage() {
                           <Typography sx={{
                             fontWeight: 600
                           }}>
-                            {r.token?.ticketNumber} · {r.fromServiceName} → {r.toServiceName}
+                            {r.tokenId?.ticketNumber} · {r.fromServiceId.name} → {r.toServiceId.name}
                           </Typography>
                           <Typography variant="body2" sx={{
                             color: "text.secondary"
