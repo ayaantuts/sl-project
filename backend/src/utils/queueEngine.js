@@ -207,6 +207,7 @@ export const enrichTokenViews = async (tokens) => {
       pendingServiceChange: changeMap.get(tId) || null,
       canCheckIn: (plain.status === "WAITING") && plain.scheduledSlot?.startTime && isTokenDispatchable(plain, now),
       canRejoin: plain.status === "MISSED" && plain.rejoinCount < 3,
+      queueLength: queueMap.get(sId)?.size || 0,
     };
   });
 };
