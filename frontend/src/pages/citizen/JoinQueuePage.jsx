@@ -104,7 +104,7 @@ export default function JoinQueuePage() {
         currentServiceId: form.serviceId,
         groupSize: Number(form.groupSize),
         dependentId: form.holder === 'SELF' ? undefined : form.holder,
-        needsAssistance: form.needsAssistance || Boolean(selectedDependent?.isVulnerable),
+        priorityTier: (form.needsAssistance || Boolean(selectedDependent?.isVulnerable)) ? 2 : 0,
         scheduledSlot: form.mode === 'SCHEDULED' ? { startTime: new Date(Number(form.slot)).toISOString() } : undefined,
       });
       setCreated(token);
