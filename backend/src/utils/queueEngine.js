@@ -156,10 +156,12 @@ export const enrichTokenViews = async (tokens) => {
     ServiceChangeRequest.find({ tokenId: { $in: tokenIds }, status: "PENDING" }),
   ]);
 
+  const targetServiceChange = await Service.find({ _id: { $in: pendingRequests.map((r) => r.toServiceId) } });
+
   const serviceMap = new Map(services.map((s) => [String(s._id), s]));
   const domainMap = new Map(domains.map((d) => [String(d._id), d]));
   const changeMap = new Map(pendingRequests.map((r) => [String(r.tokenId), r]));
-
+  const targetServiceMap = new Map(targetServiceChange.map((s) => [String(s._id), s]));
   // Precompute ordered queues per service so position & ETA are exact
   const queueMap = new Map();
   for (const sId of serviceIds) {
@@ -186,7 +188,10 @@ export const enrichTokenViews = async (tokens) => {
         : plain.status === "IN_SERVICE"
         ? 0
         : null;
-
+    const pendingServiceChange = changeMap.has(tId) ? {
+      toServiceName: targetServiceMap.get(String(changeMap.get(tId).toServiceId)).name || null,
+      requestedAt: changeMap.get(tId)?.createdAt || null,
+    } : null;
     const avgHandle = service?.avgHandleTimeMins || 5;
     const estimatedWaitMins =
       position && position > 0
@@ -204,7 +209,7 @@ export const enrichTokenViews = async (tokens) => {
       domainName: domain?.name || "Domain",
       stepLabel: `Step ${Math.max(1, stepCount)}`,
       holderName: plain.holderName || "Citizen",
-      pendingServiceChange: changeMap.get(tId) || null,
+      pendingServiceChange,
       canCheckIn: (plain.status === "WAITING") && plain.scheduledSlot?.startTime && isTokenDispatchable(plain, now),
       canRejoin: plain.status === "MISSED" && plain.rejoinCount < 3,
       queueLength: queueMap.get(sId)?.size || 0,
